@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Shift Macro · teste do Smart Click</title>
+<style>
+  html,body{margin:0;height:100%;background:#16181B;color:#E4E6E9;font:15px "Segoe UI",sans-serif;overflow:hidden}
+  header{padding:18px 24px;border-bottom:1px solid #32373E;display:flex;gap:24px;align-items:baseline}
+  h1{font-size:17px;margin:0;font-weight:600}
+  #n{color:#F2A93B;font-weight:700}
+  #alvo{position:absolute;cursor:pointer;user-select:none}
+  p{color:#959CA6;margin:0}
+</style></head>
+<body>
+<header><h1>Teste do Smart Click</h1><p>Cliques no alvo: <span id="n">0</span></p><p>O alvo muda de lugar a cada clique.</p></header>
+<img id="alvo" src="alvo.png" alt="alvo" draggable="false">
+<script>
+  const img = document.getElementById('alvo'), n = document.getElementById('n');
+  let count = 0;
+  function place(){
+    // tamanho real em pixels físicos, qualquer que seja a escala do Windows
+    img.style.width = (img.naturalWidth / devicePixelRatio) + 'px';
+    const w = img.getBoundingClientRect().width, h = img.getBoundingClientRect().height;
+    img.style.left = (40 + Math.random() * (innerWidth - w - 80)) + 'px';
+    img.style.top = (90 + Math.random() * (innerHeight - h - 130)) + 'px';
+  }
+  img.addEventListener('click', () => { n.textContent = ++count; place(); });
+  img.complete ? place() : img.addEventListener('load', place);
+  addEventListener('resize', place);
+</script>
+</body></html>

@@ -1,0 +1,5 @@
+"""Shift Macro Recorder."""
+__version__ = "1.0.0"
+APP_NAME = "Shift Macro"
+DONATE_URL = "https://ko-fi.com/ericklucena"
+REPO_URL = "https://github.com/Ericklucenaa/shift-macro"
